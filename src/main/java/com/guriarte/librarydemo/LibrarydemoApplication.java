@@ -2,6 +2,7 @@ package com.guriarte.librarydemo;
 
 import com.guriarte.librarydemo.cli.App;
 import com.guriarte.librarydemo.library.service.BookGutendexService;
+import com.guriarte.librarydemo.library.service.BookService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,9 +16,9 @@ public class LibrarydemoApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(BookGutendexService bookGutendexService) {
+	CommandLineRunner commandLineRunner(BookGutendexService bookGutendexService, BookService bookService) {
 		return args -> {
-			var app = new App(bookGutendexService);
+			var app = new App(bookGutendexService, bookService);
 			app.init();
 		};
 	}

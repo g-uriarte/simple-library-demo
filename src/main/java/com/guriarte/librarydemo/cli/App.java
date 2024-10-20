@@ -3,22 +3,25 @@ package com.guriarte.librarydemo.cli;
 import com.guriarte.librarydemo.cli.actions.*;
 import com.guriarte.librarydemo.errors.LibraryBaseException;
 import com.guriarte.librarydemo.library.service.BookGutendexService;
+import com.guriarte.librarydemo.library.service.BookService;
 
 import java.util.*;
 
 public class App {
 
     private final BookGutendexService bookGutendexService;
+    private final BookService bookService;
     private final Scanner scanner;
 
-    public App(BookGutendexService bookGutendexService) {
+    public App(BookGutendexService bookGutendexService, BookService bookService) {
         this.bookGutendexService = bookGutendexService;
+        this.bookService = bookService;
         this.scanner = new Scanner(System.in);
     }
 
     public void init() {
         Map<Integer, Action> actions = new HashMap<>();
-        actions.put(SearchBookAction.OPTION, new SearchBookAction());
+        actions.put(SearchBookAction.OPTION, new SearchBookAction(bookGutendexService, bookService));
         actions.put(ListRegisteredBooksAction.OPTION, new ListRegisteredBooksAction());
         actions.put(ListRegisteredAuthorsAction.OPTION, new ListRegisteredAuthorsAction());
         actions.put(ListAuthorsAliveInGivenYearAction.OPTION, new ListAuthorsAliveInGivenYearAction());
