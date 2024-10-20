@@ -18,6 +18,10 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
+    public void save(Book book) {
+        this.bookRepository.save(book);
+    }
+
     public Optional<List<Book>> getAllBooks() {
         return Optional.of(this.bookRepository.findAll());
     }
