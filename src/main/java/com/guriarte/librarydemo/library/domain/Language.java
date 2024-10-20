@@ -19,6 +19,6 @@ public class Language {
     private String name;
 
     @ManyToMany(mappedBy = "languages")
-    private Set<Book> libros = new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
 }
