@@ -23,6 +23,7 @@ public class App {
         actions.put(ListRegisteredAuthorsAction.OPTION, new ListRegisteredAuthorsAction());
         actions.put(ListAuthorsAliveInGivenYearAction.OPTION, new ListAuthorsAliveInGivenYearAction());
         actions.put(ListBooksByLanguageActions.OPTION, new ListBooksByLanguageActions());
+        actions.put(ExitAction.OPTION, new ExitAction());
 
         Set<Integer> options = actions.keySet();
         List<String> titles = actions.values().stream().map(action -> action.option() + ". " + action.description()).toList();
@@ -35,10 +36,11 @@ public class App {
             } catch (LibraryBaseException e) {
                 System.out.println(e.getMessage());
             }
-        } while (option != 6);
+        } while (option != ExitAction.OPTION);
     }
 
     private int selectOption(Set<Integer> options, List<String> titleOptions) {
+        System.out.println("---- Menu ----");
         titleOptions.forEach(System.out::println);
         System.out.print("Select an option: ");
         int option = 0;
@@ -47,8 +49,12 @@ public class App {
             try {
                 option = scanner.nextInt();
                 valid = options.contains(option);
+                if (!valid) {
+                    System.out.println("Please insert a valid option: ");
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Please insert a valid option (1, 2, 3...)");
+                scanner.nextLine();
             }
         }
 
