@@ -8,11 +8,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "books")
+@SequenceGenerator(name = "book_seq", sequenceName = "book_sequence", allocationSize = 1)
 @Data
 public class Book {
 
     @Id
-    @SequenceGenerator(name = "book_seq", sequenceName = "book_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
     private Long id;
 
