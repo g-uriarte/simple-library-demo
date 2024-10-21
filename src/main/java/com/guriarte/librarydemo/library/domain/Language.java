@@ -19,7 +19,4 @@ public class Language {
     @Column(unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "languages")
-    private Set<Book> books = new HashSet<>();
-
 }

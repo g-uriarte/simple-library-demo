@@ -20,7 +20,7 @@ public class Book {
     @Column(name = "title")
     private String title;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "book_author",
             joinColumns = @JoinColumn(name = "book_id"),
@@ -28,7 +28,7 @@ public class Book {
     )
     private Set<Author> authors = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "book_languages",
             joinColumns = @JoinColumn(name = "book_id"),
