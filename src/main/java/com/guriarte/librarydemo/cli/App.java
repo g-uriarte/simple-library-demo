@@ -2,8 +2,10 @@ package com.guriarte.librarydemo.cli;
 
 import com.guriarte.librarydemo.cli.actions.*;
 import com.guriarte.librarydemo.errors.LibraryBaseException;
+import com.guriarte.librarydemo.library.service.AuthorService;
 import com.guriarte.librarydemo.library.service.BookGutendexService;
 import com.guriarte.librarydemo.library.service.BookService;
+import com.guriarte.librarydemo.library.service.LanguageService;
 
 import java.util.*;
 
@@ -11,21 +13,28 @@ public class App {
 
     private final BookGutendexService bookGutendexService;
     private final BookService bookService;
+    private final AuthorService authorService;
+    private final LanguageService languageService;
     private final Scanner scanner;
 
-    public App(BookGutendexService bookGutendexService, BookService bookService) {
+    public App(
+            BookGutendexService bookGutendexService, BookService bookService,
+            AuthorService authorService, LanguageService languageService
+    ) {
         this.bookGutendexService = bookGutendexService;
         this.bookService = bookService;
+        this.authorService = authorService;
+        this.languageService = languageService;
         this.scanner = new Scanner(System.in);
     }
 
     public void init() {
         Map<Integer, Action> actions = new HashMap<>();
         actions.put(SearchBookAction.OPTION, new SearchBookAction(bookGutendexService, bookService));
-        actions.put(ListRegisteredBooksAction.OPTION, new ListRegisteredBooksAction());
-        actions.put(ListRegisteredAuthorsAction.OPTION, new ListRegisteredAuthorsAction());
-        actions.put(ListAuthorsAliveInGivenYearAction.OPTION, new ListAuthorsAliveInGivenYearAction());
-        actions.put(ListBooksByLanguageActions.OPTION, new ListBooksByLanguageActions());
+        actions.put(ListRegisteredBooksAction.OPTION, new ListRegisteredBooksAction(bookService));
+        actions.put(ListRegisteredAuthorsAction.OPTION, new ListRegisteredAuthorsAction(authorService));
+        actions.put(ListAuthorsAliveInGivenYearAction.OPTION, new ListAuthorsAliveInGivenYearAction(authorService));
+        actions.put(ListBooksByLanguageActions.OPTION, new ListBooksByLanguageActions(bookService, languageService));
         actions.put(ExitAction.OPTION, new ExitAction());
 
         Set<Integer> options = actions.keySet();

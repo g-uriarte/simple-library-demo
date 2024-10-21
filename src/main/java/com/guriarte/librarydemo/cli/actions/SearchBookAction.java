@@ -45,10 +45,11 @@ public class SearchBookAction implements Action {
             IntStream.range(0, books.size()).forEach(i -> {
                 System.out.println(i + 1 + ". " + books.get(i).title());
             });
-            System.out.print("Select a book by id:");
+            System.out.print("Select a book by id: ");
             var bookIndex = sc.nextInt();
             var selectedBook = books.get(bookIndex - 1);
-            bookService.save(BookMapper.fromDto(selectedBook));
+            var book = bookService.save(BookMapper.fromDto(selectedBook));
+            System.out.println("Book "+ book.getTitle() +" saved!");
         } else {
             System.out.println("Not found books with title: " + bookTitle);
         }
