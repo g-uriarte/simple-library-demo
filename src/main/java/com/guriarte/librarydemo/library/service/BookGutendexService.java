@@ -33,7 +33,7 @@ public class BookGutendexService {
             HttpResponse<String> httpResponse = this.httpClient.get(url);
             if (httpResponse.statusCode() != 200) return Optional.empty();
             var booksResponse = dataMapper.toObject(httpResponse.body(), BooksResponse.class);
-            return Optional.of(booksResponse.bookDtos());
+            return Optional.of(booksResponse.books());
         } catch (IOException | InterruptedException e) {
             throw new GutendexOutOfService();
         }
