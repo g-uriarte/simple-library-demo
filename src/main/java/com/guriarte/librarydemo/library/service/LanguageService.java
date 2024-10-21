@@ -18,7 +18,9 @@ public class LanguageService {
         this.languageRepository = languageRepository;
     }
 
-    public Optional<List<Language>> getAllLanguages() {
+    public Optional<List<Language>> getAll() {
+        var languages = this.languageRepository.findAll();
+        if (languages.isEmpty()) return Optional.empty();
         return Optional.of(this.languageRepository.findAll());
     }
 

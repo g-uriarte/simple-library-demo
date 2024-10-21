@@ -18,8 +18,16 @@ public class AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    public Optional<List<Author>> getAll() {
+        var authors = this.authorRepository.findAll();
+        if (authors.isEmpty()) return Optional.empty();
+        return Optional.of(authors);
+    }
+
     public Optional<List<Author>> getAliveAuthors(int year) {
-        return Optional.of(this.authorRepository.findAliveInGivenYear(year));
+        var authors = this.authorRepository.findAliveInGivenYear(year);
+        if (authors.isEmpty()) return Optional.empty();
+        return Optional.of(authors);
     }
 
 
