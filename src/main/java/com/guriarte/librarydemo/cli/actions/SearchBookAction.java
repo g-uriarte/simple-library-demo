@@ -39,7 +39,7 @@ public class SearchBookAction implements Action {
         var bookTitle = sc.nextLine();
         System.out.println("Searching...");
         var optionalBooks = bookGutendexService.searchByName(bookTitle);
-        if (optionalBooks.isPresent()) {
+        if (optionalBooks.isPresent() && !optionalBooks.get().isEmpty()) {
             var books = optionalBooks.get();
             System.out.println("Books found (" +books.size()+  "): ");
             IntStream.range(0, books.size()).forEach(i -> {

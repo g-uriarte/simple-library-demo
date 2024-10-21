@@ -7,5 +7,5 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record BooksResponse(
-    @JsonAlias("results") List<BookDto> bookDtos
+    @JsonAlias("results") List<BookDto> books
 ) { }
