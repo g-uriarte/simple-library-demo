@@ -17,8 +17,8 @@ public class ListAuthorsMessage {
     @Override
     public String toString() {
         var text = new Text();
-        text.appendln("Id \t Title");
         text.appendln(String.format(AUTHORS_FOUND_FORMAT, authors.size()));
+        text.appendln("Id\tTitle");
         for (int i = 0; i < authors.size(); i++) {
             text.appendln(String.format(AUTHOR_FORMAT, i + 1, authors.get(i).name()));
         }

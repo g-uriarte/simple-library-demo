@@ -17,8 +17,8 @@ public class ListBooksMessage {
     @Override
     public String toString() {
         var text = new Text();
-        text.appendln("Id \t Title");
         text.appendln(String.format(BOOKS_FOUND_FORMAT, books.size()));
+        text.appendln("Id\tTitle");
         for (int i = 0; i < books.size(); i++) {
             text.appendln(String.format(BOOK_FORMAT, i + 1, books.get(i).title()));
         }
