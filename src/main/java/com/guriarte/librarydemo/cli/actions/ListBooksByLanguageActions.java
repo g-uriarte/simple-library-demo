@@ -7,7 +7,6 @@ import com.guriarte.librarydemo.errors.LibraryBaseException;
 import com.guriarte.librarydemo.library.service.BookService;
 import com.guriarte.librarydemo.library.service.LanguageService;
 
-import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -36,7 +35,7 @@ public class ListBooksByLanguageActions implements Action {
     }
 
     @Override
-    public void perform() throws LibraryBaseException {
+    public void perform() {
         var optionalLanguages = this.languageService.getAll();
 
         if (optionalLanguages.isPresent()) {

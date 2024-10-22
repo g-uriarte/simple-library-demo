@@ -8,8 +8,6 @@ import com.guriarte.librarydemo.cli.console.IntegerReader;
 import com.guriarte.librarydemo.errors.LibraryBaseException;
 import com.guriarte.librarydemo.library.service.AuthorService;
 
-import java.util.Scanner;
-
 public class ListAuthorsAliveInGivenYearAction implements Action {
 
     public static final int OPTION = 4;
@@ -32,7 +30,7 @@ public class ListAuthorsAliveInGivenYearAction implements Action {
     }
 
     @Override
-    public void perform() throws LibraryBaseException {
+    public void perform() {
         System.out.print("Insert a year: ");
         var year = integerReader.read(value -> true, "Please insert a valid year", "Please insert a valid year (example: 1450, -399)");
 

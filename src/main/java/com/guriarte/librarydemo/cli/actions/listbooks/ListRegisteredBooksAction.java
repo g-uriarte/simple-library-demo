@@ -28,7 +28,7 @@ public class ListRegisteredBooksAction implements Action {
     }
 
     @Override
-    public void perform() throws LibraryBaseException {
+    public void perform() {
         var optionalBooks = this.bookService.getAllBooks();
 
         if (optionalBooks.isPresent()) {
