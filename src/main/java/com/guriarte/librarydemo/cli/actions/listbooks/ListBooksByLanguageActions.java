@@ -1,9 +1,13 @@
-package com.guriarte.librarydemo.cli.actions;
+package com.guriarte.librarydemo.cli.actions.listbooks;
 
+import com.guriarte.librarydemo.cli.actions.Action;
+import com.guriarte.librarydemo.cli.actions.common.messages.ListBooksMessage;
+import com.guriarte.librarydemo.cli.actions.common.messages.SimpleBook;
+import com.guriarte.librarydemo.cli.actions.listbooks.messages.ListLanguagesMessage;
 import com.guriarte.librarydemo.cli.console.ConsolePrinter;
 import com.guriarte.librarydemo.cli.console.ConsoleReader;
 import com.guriarte.librarydemo.cli.console.IntegerReader;
-import com.guriarte.librarydemo.errors.LibraryBaseException;
+import com.guriarte.librarydemo.library.domain.Language;
 import com.guriarte.librarydemo.library.service.BookService;
 import com.guriarte.librarydemo.library.service.LanguageService;
 
@@ -41,21 +45,22 @@ public class ListBooksByLanguageActions implements Action {
         if (optionalLanguages.isPresent()) {
             ConsolePrinter.println("Please select one language by id: ");
             var languages = optionalLanguages.get();
-            var mapLanguages = IntStream.range(0, languages.size()).boxed().collect(Collectors.toMap(Function.identity(), languages::get));
+
+            var mapLanguages = IntStream.range(0, languages.size()).boxed().collect(Collectors.toMap(i -> i + 1, languages::get));
             var options = mapLanguages.keySet();
-            for (int i = 0; i < mapLanguages.size(); i++) {
-                System.out.println(i + ". " + mapLanguages.get(i).getName());
-            }
+            var languagesMessage = new ListLanguagesMessage(languages.stream().map(Language::getName).toList()).toString();
+
+            ConsolePrinter.println(languagesMessage);
             ConsolePrinter.print("language id: ");
+
             var languageId = integerReader.read(options::contains, "Please insert a valid option", "Please insert a valid option (example: 1, 2, 3...)");
 
             var selectedLanguage = mapLanguages.get(languageId);
             var optionalBooks = this.bookService.getByLanguage(selectedLanguage.getName());
 
             if (optionalBooks.isPresent()) {
-                optionalBooks
-                    .get()
-                    .forEach(book -> System.out.println("id: " + book.getId() + " | name: " + book.getTitle()));
+                var listBookMessage = new ListBooksMessage(optionalBooks.get().stream().map(SimpleBook::fromDomain).toList()).toString();
+                ConsolePrinter.println(listBookMessage);
             } else {
                 ConsolePrinter.println("No books found for the language " + selectedLanguage.getName());
             }
