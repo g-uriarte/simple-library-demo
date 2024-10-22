@@ -12,7 +12,8 @@ public class MenuMessage {
         this.titleOptions = titleOptions;
     }
 
-    public String generate() {
+    @Override
+    public String toString() {
         var text = new Text();
         text.appendln("--- Menu ---");
         titleOptions.forEach(text::appendln);

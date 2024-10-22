@@ -1,6 +1,7 @@
 package com.guriarte.librarydemo.cli;
 
 import com.guriarte.librarydemo.cli.actions.*;
+import com.guriarte.librarydemo.cli.actions.listbooks.ListRegisteredBooksAction;
 import com.guriarte.librarydemo.cli.console.ConsolePrinter;
 import com.guriarte.librarydemo.cli.console.ConsoleReader;
 import com.guriarte.librarydemo.cli.console.IntegerReader;
@@ -44,7 +45,7 @@ public class App {
         Set<Integer> options = actions.keySet();
         List<String> titles = actions.values().stream().map(action -> action.option() + ". " + action.description()).toList();
 
-        var menuMessageStr = new MenuMessage(titles).generate();
+        var menuMessageStr = new MenuMessage(titles).toString();
 
         int option = 0;
         do {

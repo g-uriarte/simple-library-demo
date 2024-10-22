@@ -1,5 +1,6 @@
-package com.guriarte.librarydemo.cli.actions;
+package com.guriarte.librarydemo.cli.actions.listbooks;
 
+import com.guriarte.librarydemo.cli.actions.Action;
 import com.guriarte.librarydemo.errors.LibraryBaseException;
 import com.guriarte.librarydemo.library.service.BookService;
 
