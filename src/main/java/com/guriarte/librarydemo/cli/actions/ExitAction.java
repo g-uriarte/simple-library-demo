@@ -1,11 +1,11 @@
 package com.guriarte.librarydemo.cli.actions;
 
+import com.guriarte.librarydemo.cli.console.ConsolePrinter;
 import com.guriarte.librarydemo.errors.LibraryBaseException;
 
 public class ExitAction implements Action {
 
     public static final int OPTION = 6;
-
 
     @Override
     public int option() {
@@ -19,6 +19,6 @@ public class ExitAction implements Action {
 
     @Override
     public void perform() throws LibraryBaseException {
-        System.out.println("Bye!");
+        ConsolePrinter.println("Bye!");
     }
 }
