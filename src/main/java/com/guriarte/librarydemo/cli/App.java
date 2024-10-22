@@ -50,7 +50,7 @@ public class App {
         int option = 0;
         do {
             try {
-                ConsolePrinter.println(menuMessageStr);
+                ConsolePrinter.print(menuMessageStr);
                 option = selectOption(options);
                 actions.get(option).perform();
             } catch (LibraryBaseException e) {
