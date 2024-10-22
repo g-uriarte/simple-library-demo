@@ -1,7 +1,6 @@
 package com.guriarte.librarydemo.cli.actions;
 
 import com.guriarte.librarydemo.cli.console.ConsolePrinter;
-import com.guriarte.librarydemo.errors.LibraryBaseException;
 
 public class ExitAction implements Action {
 
@@ -18,7 +17,7 @@ public class ExitAction implements Action {
     }
 
     @Override
-    public void perform() throws LibraryBaseException {
+    public void perform() {
         ConsolePrinter.println("Bye!");
     }
 }
