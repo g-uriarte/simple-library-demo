@@ -23,9 +23,12 @@ public class StringReader implements Reader<String> {
             try {
                 value = this.consoleReader.read();
                 valid = inputValidator.validate(value.trim());
-                if (!valid) ConsolePrinter.println(messageInvalidIntegerValue);
+                if (!valid) {
+                    ConsolePrinter.println(messageInvalidIntegerValue);
+                }
             } catch (NoSuchElementException e) {
                 ConsolePrinter.println(messageInputMismatch);
+                this.consoleReader.cleanBuffer();
             }
         }
 

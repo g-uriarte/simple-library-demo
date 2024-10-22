@@ -17,7 +17,15 @@ public class ConsoleReader {
     }
 
     public int readInt() throws InputMismatchException {
-        return this.scanner.nextInt();
+        var value = this.scanner.nextInt();
+        // clean buffer after read number
+        this.scanner.nextLine();
+
+        return value;
+    }
+
+    public void cleanBuffer() {
+        scanner.next();
     }
 
 }
