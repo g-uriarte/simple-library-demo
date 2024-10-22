@@ -1,7 +1,9 @@
 package com.guriarte.librarydemo.cli;
 
 import com.guriarte.librarydemo.cli.actions.*;
+import com.guriarte.librarydemo.cli.actions.listauthors.ListAuthorsAliveInGivenYearAction;
 import com.guriarte.librarydemo.cli.actions.listauthors.ListRegisteredAuthorsAction;
+import com.guriarte.librarydemo.cli.actions.listbooks.ListBooksByLanguageActions;
 import com.guriarte.librarydemo.cli.actions.listbooks.ListRegisteredBooksAction;
 import com.guriarte.librarydemo.cli.console.ConsolePrinter;
 import com.guriarte.librarydemo.cli.console.ConsoleReader;

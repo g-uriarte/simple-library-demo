@@ -1,11 +1,11 @@
-package com.guriarte.librarydemo.cli.actions;
+package com.guriarte.librarydemo.cli.actions.listauthors;
 
+import com.guriarte.librarydemo.cli.actions.Action;
 import com.guriarte.librarydemo.cli.actions.common.messages.ListAuthorsMessage;
 import com.guriarte.librarydemo.cli.actions.common.messages.SimpleAuthor;
 import com.guriarte.librarydemo.cli.console.ConsolePrinter;
 import com.guriarte.librarydemo.cli.console.ConsoleReader;
 import com.guriarte.librarydemo.cli.console.IntegerReader;
-import com.guriarte.librarydemo.errors.LibraryBaseException;
 import com.guriarte.librarydemo.library.service.AuthorService;
 
 public class ListAuthorsAliveInGivenYearAction implements Action {
