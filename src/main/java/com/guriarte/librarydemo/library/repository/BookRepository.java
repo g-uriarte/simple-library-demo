@@ -14,4 +14,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b JOIN b.languages l WHERE l.name = :languageName")
     List<Book> findByLanguage(@Param("languageName") String language);
 
+    boolean existsByTitle(String title);
+
 }

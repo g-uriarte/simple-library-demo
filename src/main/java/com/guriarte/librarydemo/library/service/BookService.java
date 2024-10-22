@@ -57,6 +57,10 @@ public class BookService {
         return this.bookRepository.save(book);
     }
 
+    public boolean existsByTitle(String title) {
+        return this.bookRepository.existsByTitle(title);
+    }
+
     public Optional<List<Book>> getAllBooks() {
         var books = this.bookRepository.findAll();
         if (books.isEmpty()) return Optional.empty();
