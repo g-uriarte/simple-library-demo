@@ -4,7 +4,7 @@ import com.guriarte.librarydemo.cli.console.validator.InputValidator;
 
 import java.util.InputMismatchException;
 
-public class IntegerReader {
+public class IntegerReader implements Reader<Integer> {
 
     private final ConsoleReader consoleReader;
 
@@ -12,7 +12,10 @@ public class IntegerReader {
         this.consoleReader = consoleReader;
     }
 
-    public int read(InputValidator inputValidator, String messageInvalidIntegerValue, String messageInputMismatch) {
+    public Integer read(
+        InputValidator<Integer> inputValidator, String messageInvalidValue,
+        String messageException
+    ) {
         int value = 0;
         boolean valid = false;
         while (!valid) {
@@ -21,10 +24,10 @@ public class IntegerReader {
 
                 valid = inputValidator.validate(value);
                 if (!valid) {
-                    System.out.println(messageInvalidIntegerValue);
+                    ConsolePrinter.println(messageInvalidValue);
                 }
             } catch (InputMismatchException e) {
-                System.out.println(messageInputMismatch);
+                ConsolePrinter.println(messageException);
                 this.consoleReader.read();
             }
         }

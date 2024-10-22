@@ -1,6 +1,6 @@
 package com.guriarte.librarydemo.cli.console.validator;
 
 @FunctionalInterface
-public interface InputValidator {
-    boolean validate(int value);
+public interface InputValidator<T> {
+    boolean validate(T value);
 }

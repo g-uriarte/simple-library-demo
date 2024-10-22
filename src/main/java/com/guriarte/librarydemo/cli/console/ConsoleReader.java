@@ -1,6 +1,7 @@
 package com.guriarte.librarydemo.cli.console;
 
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ConsoleReader {
@@ -11,7 +12,7 @@ public class ConsoleReader {
         this.scanner = new Scanner(System.in);
     }
 
-    public String read() {
+    public String read() throws NoSuchElementException {
         return this.scanner.nextLine();
     }
 
