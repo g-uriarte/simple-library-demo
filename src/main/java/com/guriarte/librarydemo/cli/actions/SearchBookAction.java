@@ -1,6 +1,6 @@
 package com.guriarte.librarydemo.cli.actions;
 
-import com.guriarte.librarydemo.cli.actions.common.messages.ListBookMessage;
+import com.guriarte.librarydemo.cli.actions.common.messages.ListBooksMessage;
 import com.guriarte.librarydemo.cli.actions.common.messages.SimpleBook;
 import com.guriarte.librarydemo.cli.console.ConsolePrinter;
 import com.guriarte.librarydemo.cli.console.ConsoleReader;
@@ -54,7 +54,7 @@ public class SearchBookAction implements Action {
         if (optionalBooks.isPresent() && !optionalBooks.get().isEmpty()) {
             var books = optionalBooks.get();
             var booksOptions = IntStream.range(0, books.size()).boxed().toList();
-            var booksMessage = new ListBookMessage(books.stream().map(SimpleBook::fromDto).toList());
+            var booksMessage = new ListBooksMessage(books.stream().map(SimpleBook::fromDto).toList());
             ConsolePrinter.println(booksMessage.toString());
             ConsolePrinter.print("Select a book by id: ");
             var bookIndex = integerReader.read(booksOptions::contains, "Please insert a valid book id", "Please insert a valid book id (example: 0, 1, 2 ...)");

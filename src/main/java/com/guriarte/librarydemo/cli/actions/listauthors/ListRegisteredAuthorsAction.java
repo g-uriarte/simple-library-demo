@@ -1,6 +1,9 @@
-package com.guriarte.librarydemo.cli.actions;
+package com.guriarte.librarydemo.cli.actions.listauthors;
 
-import com.guriarte.librarydemo.errors.LibraryBaseException;
+import com.guriarte.librarydemo.cli.actions.Action;
+import com.guriarte.librarydemo.cli.actions.common.messages.ListAuthorsMessage;
+import com.guriarte.librarydemo.cli.actions.common.messages.SimpleAuthor;
+import com.guriarte.librarydemo.cli.console.ConsolePrinter;
 import com.guriarte.librarydemo.library.service.AuthorService;
 
 public class ListRegisteredAuthorsAction implements Action {
@@ -23,14 +26,13 @@ public class ListRegisteredAuthorsAction implements Action {
     }
 
     @Override
-    public void perform() throws LibraryBaseException {
+    public void perform() {
         var optionalAuthors =  this.authorService.getAll();
         if (optionalAuthors.isPresent()) {
-            optionalAuthors
-                .get()
-                .forEach(author -> System.out.println(author.getId() + ". " + author.getName() + " " + author.getBirthYear() + " - " + author.getDeathYear()));
+            var listAuthorsMessage = new ListAuthorsMessage(optionalAuthors.get().stream().map(SimpleAuthor::fromDomain).toList()).toString();
+            ConsolePrinter.println(listAuthorsMessage);
         } else {
-            System.out.println("Not found registered authors.");
+            ConsolePrinter.println("Not found registered authors.");
         }
     }
 }
